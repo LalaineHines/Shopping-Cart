@@ -1,0 +1,92 @@
+import { useEffect, useState } from "react";
+
+import CartItem from "../components/CartItem";
+import CartRecommended from "../components/CartRecommended";
+import CheckoutSummary from "../components/CheckoutSummary";
+import { useOutletContext } from "react-router-dom";
+
+const CartPage = () => {
+  const { cart, products } = useOutletContext();
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const [itemTotals, setItemTotals] = useState({});
+
+  const handlePrices = (productId, price) => {
+    setItemTotals((prev) => ({
+      ...prev,
+      [productId]: price,
+    }));
+  };
+
+  let cartListItems = false;
+  let cartListItemsRecommended = false;
+
+  if (cart.length > 0) {
+    const recommendedCategory = cart[0].productData.category;
+    const cartIds = cart.map((item) => item.productId);
+
+    const sameCategory = products.filter(
+      (item) =>
+        item.category === recommendedCategory && !cartIds.includes(item.id)
+    );
+
+    const others = products.filter(
+      (item) =>
+        item.category !== recommendedCategory && !cartIds.includes(item.id)
+    );
+
+    const recommendedProducts = [...sameCategory, ...others].slice(0, 3);
+
+    cartListItemsRecommended = recommendedProducts.map((product) => (
+      <div key={product.id}>
+        <CartRecommended product={product} />
+      </div>
+    ));
+
+    cartListItems = cart.map((product) => {
+      return (
+        <div key={product.productId}>
+          <CartItem
+            product={product}
+            priceData={(productId, price) => handlePrices(productId, price)}
+          />
+        </div>
+      );
+    });
+  }
+
+  return (
+    <div>
+      <section className="bg-gray-900 py-8 antialiased md:py-16">
+        <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+          <h2 className="text-xl font-semibold text-white sm:text-2xl">
+            {cartListItems ? "Shopping Cart" : "No items in cart"}
+          </h2>
+
+          <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+            <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
+              {cartListItems}
+              {/* RECOMMENDED CART ITEMS START */}
+
+              <div className="xl:mt-8 xl:block">
+                <h3 className="text-2xl font-semibold text-white">
+                  {cartListItemsRecommended ? "People also bought" : ""}
+                </h3>
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-3 md:gap-4 sm:mt-8">
+                  {cartListItemsRecommended}
+                </div>
+              </div>
+              {/* RECOMMENDED CART ITEMS END */}
+            </div>
+            {cart.length > 0 ? <CheckoutSummary itemTotals={itemTotals} /> : ""}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default CartPage;
