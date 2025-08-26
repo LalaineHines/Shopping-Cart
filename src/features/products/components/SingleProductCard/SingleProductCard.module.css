@@ -1,0 +1,200 @@
+.main {
+  max-width: 790px;
+  margin: 5% auto;
+}
+
+.card {
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
+  transition: 200ms;
+  background: #1e2939;
+  border-radius: 25px;
+}
+
+.card__title {
+  display: flex;
+  align-items: center;
+  padding: 30px 40px;
+}
+
+.card__title h3 {
+  flex: 0 1 200px;
+  text-align: right;
+  margin: 0;
+  color: #252525;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.icon {
+  flex: 1 0 10px;
+  background: #0d48a8;
+  color: #fff;
+  padding: 10px 10px;
+  transition: 200ms;
+}
+
+.icon a {
+  color: #fff;
+}
+
+.icon:hover {
+  background: #252525;
+}
+
+.card__body {
+  padding: 0 40px;
+  display: flex;
+  flex-flow: row no-wrap;
+  margin-bottom: 25px;
+}
+
+.half {
+  box-sizing: border-box;
+  padding: 0 15px;
+  flex: 1 0 50%;
+}
+
+.featured_text h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.sub {
+  font-family: "Montserrat", sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: #686e77;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.price {
+  font-family: "Fjalla One", sans-serif;
+  color: #ffffff;
+  font-size: 26px;
+}
+
+.image {
+  padding-top: 15px;
+  width: 100%;
+}
+
+.image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.description {
+  margin-bottom: 25px;
+}
+
+.description p {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  line-height: 27px;
+  font-size: 16px;
+  color: #7a7a7a;
+}
+
+.stock {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #65cc16;
+}
+
+.reviews .stars {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+
+.reviews .stars li {
+  display: inline-block;
+}
+
+.reviews .stars .fa {
+  color: #f7c01b;
+}
+
+.reviews span {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin-left: 5px;
+  color: #555;
+}
+
+.card__footer {
+  padding: 30px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__footer::before {
+  content: "";
+  width: 80%;
+  height: 3px;
+  background: #0d48a8;
+}
+
+.action__button {
+  cursor: pointer;
+  border: 1px solid #0d48a8;
+  padding: 14px 30px;
+  border-radius: 200px;
+  color: #fff;
+  background: #0d48a8;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  transition: 200ms;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.action__button:hover {
+  background: #252525;
+  color: #fff;
+}
+
+.add__order__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 820px) {
+  .card__body {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .image {
+    width: 30%;
+    margin-bottom: 10px;
+  }
+  .main {
+    max-width: 550px;
+  }
+  .half {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .main {
+    max-width: 375px;
+  }
+}
